@@ -17,7 +17,7 @@ namespace InventoryManagement.Views
             bool isRunning = true;
             while (isRunning)
             {
-                [cite_start]// Display Menu Options [cite: 31, 32, 33, 35, 36]
+                [cite_start]
                 Console.WriteLine("\n1. View Inventory\n2. Update Stock\n3. Reset Inventory\n4. Exit");
                 string choice = Console.ReadLine();
 
@@ -43,7 +43,7 @@ namespace InventoryManagement.Views
             int index = int.Parse(Console.ReadLine()) - 1;
             Console.Write("New quantity: ");
             string qty = Console.ReadLine();
-            service.UpdateStock(index, qty); // Send update to service [cite: 33, 34]
+            service.UpdateStock(index, qty); 
         }
     }
 }
