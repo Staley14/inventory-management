@@ -1,3 +1,8 @@
+/*
+Name: Staley Lane T. Cardeno
+Date: February 21, 2026
+**/
+
 using System;
 
 namespace InventoryManagement.Services
