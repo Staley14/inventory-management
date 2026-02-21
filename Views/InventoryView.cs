@@ -1,3 +1,8 @@
+/*
+Name: Staley Lane T. Cardeno
+Date: February 21, 2026
+**/
+
 using System;
 using InventoryManagement.Services;
 
@@ -7,7 +12,7 @@ namespace InventoryManagement.Views
     {
         private InventoryService service = new InventoryService();
 
-        [cite_start]public void Run() // The main program loop [cite: 29]
+        [cite_start]public void Run() 
         {
             bool isRunning = true;
             while (isRunning)
@@ -25,7 +30,7 @@ namespace InventoryManagement.Views
 
         private void DisplayInventory()
         {
-            string[,] products = service.GetProducts(); // Get data from service [cite: 28]
+            string[,] products = service.GetProducts(); 
             for (int i = 0; i < products.GetLength(1); i++)
             {
                 Console.WriteLine($"{i + 1}. {products[0, i]} - Stock: {products[1, i]}");
