@@ -7,53 +7,25 @@ namespace InventoryManagement.Views
     {
         private InventoryService service = new InventoryService();
 
-        public void Run()
+        [cite_start]public void Run() // The main program loop [cite: 29]
         {
             bool isRunning = true;
-
             while (isRunning)
             {
-                Console.WriteLine("\n==== Inventory Menu ====");
-                Console.WriteLine("1. View Inventory");
-                Console.WriteLine("2. Update Stock");
-                Console.WriteLine("3. Reset Inventory");
-                Console.WriteLine("4. Exit");
-                Console.Write("Select an option: ");
-
+                [cite_start]// Display Menu Options [cite: 31, 32, 33, 35, 36]
+                Console.WriteLine("\n1. View Inventory\n2. Update Stock\n3. Reset Inventory\n4. Exit");
                 string choice = Console.ReadLine();
 
-                switch (choice)
-                {
-                    case "1":
-                        DisplayInventory();
-                        break;
-
-                    case "2":
-                        UpdateInventory();
-                        break;
-
-                    case "3":
-                        service.ResetInventory();
-                        Console.WriteLine("Inventory has been reset.");
-                        break;
-
-                    case "4":
-                        isRunning = false;
-                        Console.WriteLine("Exiting program...");
-                        break;
-
-                    default:
-                        Console.WriteLine("Invalid option. Try again.");
-                        break;
-                }
+                if (choice == "1") DisplayInventory();
+                else if (choice == "2") UpdateInventory();
+                else if (choice == "3") { service.ResetInventory(); Console.WriteLine("Reset complete."); }
+                else if (choice == "4") isRunning = false;
             }
         }
 
         private void DisplayInventory()
         {
-            string[,] products = service.GetProducts();
-
-            Console.WriteLine("\n--- Current Inventory ---");
+            string[,] products = service.GetProducts(); // Get data from service [cite: 28]
             for (int i = 0; i < products.GetLength(1); i++)
             {
                 Console.WriteLine($"{i + 1}. {products[0, i]} - Stock: {products[1, i]}");
@@ -62,16 +34,11 @@ namespace InventoryManagement.Views
 
         private void UpdateInventory()
         {
-            DisplayInventory();
-
-            Console.Write("Select product number to update: ");
-            int productNumber = int.Parse(Console.ReadLine()) - 1;
-
-            Console.Write("Enter new stock quantity: ");
-            string newStock = Console.ReadLine();
-
-            service.UpdateStock(productNumber, newStock);
-            Console.WriteLine("Stock updated successfully.");
+            Console.Write("Select product (1-3): ");
+            int index = int.Parse(Console.ReadLine()) - 1;
+            Console.Write("New quantity: ");
+            string qty = Console.ReadLine();
+            service.UpdateStock(index, qty); // Send update to service [cite: 33, 34]
         }
     }
 }
